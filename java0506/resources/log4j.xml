@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- Appenders -->
+	<appender name="console"
+		class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%c] %m%n" />
+		</layout>
+	</appender>
+	<appender name="console-infolog"
+		class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p %m%n" />
+		</layout>
+	</appender>
+ 	<!--  날짜별 로그 -->  
+    <appender name="dailyout" class="org.apache.log4j.DailyRollingFileAppender">  
+        <!-- 이것은 날짜별로  로그를 남김. 파일명.확장자.DatePattern으로 정의 함-->  
+        <param name="file" value="dailyout.log"/>  
+        <param name="Append" value="true"/>  
+        <param name="DatePattern" value="'.'yyMMdd"/>  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n"/>  
+        </layout>  
+    </appender>  
+ 
+    <!-- xml 로그-->  
+    <!-- xml형식으로 로그를 남김 -->  
+    <appender name="xmlout" class="org.apache.log4j.FileAppender">  
+        <param name="file" value="log4jxml.xml"/>  
+        <param name="Append" value="true"/>  
+        <layout class="org.apache.log4j.xml.XMLLayout"/>  
+    </appender>  	
+	<!-- Application Loggers -->
+	<!-- Query Loggers -->
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console-infolog" />
+	</logger>
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</logger>
+	<!-- Root Logger -->
+	<root>
+		<level value="INFO" />
+		<!-- 
+		<appender-ref ref="xmlout" />
+		<appender-ref ref="dailyout" />
+		 -->
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>
