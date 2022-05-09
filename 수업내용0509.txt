@@ -1,0 +1,56 @@
+
+https://apache.org/
+
+-> tomcat -> Tomcat 9버전 다운로드(65비트 윈도우집다운).인스톨로 다운받지말것!
+
+디드라이브에 설치 -> 아파치 압축풀고 주소 들어가서 복사후 내PC->고급시스템설정-> 환경변수 ->시스템변수 새로만들기
+->
+변수이름 :  CATALINA_HOME
+변수값 :D:\apache-tomcat-9.0.62(디드라이브주소)
+
+아파치 폴더 -> bin -> startup.bat 실행후 화면 제대로 실행되는지 확인하기(안되면 자바홈안깔린것!!)
+
+sts3실행후 file->switch workspace -> 폴더 새로만들기->sts실행후 -> 오른쪽상단 +버튼 눌러서 JAVA EE클릭
+
+하단 서버 딜리트후 -> 서버새로만들기 클릭-> 아파치들어가서 해당버전 선택후 -> 아파치 깔려있는 폴더위치까지 지정해주기(BIN폴더보이는곳까지설정)
+
+서버포트충돌 생기면 서버실행해서 포트번호 바꾸거나 포트죽이기한다.
+
+
+
+window - 프리퍼런스 utf8설정 , emmet 언어설정 
+
+tern eclipse - 자동완성기능.  install설치 들어가서 add 누른후 
+name : tern 
+주소 :  http://oss.opensagres.fr/tern.repository/1.2.0/
+
+tern 설치후 window-프리퍼런스 - web -> client-side javascript-> Tern ->development-> repository(Bootstrap,Browser,Browser extension,jquery,jquery mobile, jquery ui)선택하기
+
+web.xml은 모든웹의 설정정보들을 갖고있음.그래서 프로젝트 만들때 web.xml을 체크해준다.
+
+- 웹프로젝트 만들때는 src-> webapp-> WEB-INF 에서 프로젝트 만들기.
+
+@@자동완성안될경우!!
+ -  자동완성쓰려면 프로젝트 configure -> converto to tern project 클릭해야 자동완성 된다.
+
+
+JSP 용어
+<%@로 시작하면 디렉티브라고 하고 환경을 설정할때 사용한다.%> 
+<%= 으로 시작하면 표현식이라고 하고 무언가를 출력할때 사용 %>
+ Ex)<%="안녕"%>
+
+<%로 시작하면 스크립트릿이라고 하고 자바 코드를 적는다. %>
+<%!로 시작하면 선언문이라 한다. 메서드 선언시 사용한다. %>  ->쓸일 거의 없음
+
+<%-- 나는 jsp주석입니다. 소스보기할떄 보이지 않아요. new Date(같은 명령은 실행되지 않아요 --%>
+	<%-- 는 주석임(소스보기로 볼떄 안보인다.)
+
+서버를 배포할때는 WAR file 로 배포한다.(톰캣의 홈 경로는 Webapp폴더로 지정한다)
+
+
+
+//name속성의 값이 같은것이 여러개 존재하면 배열로 받아야 한다.
+String hobbys[] = request.getParameterValues("hobby");
+
+<%--radio는 value를 꼭 서야하고 name값이 같아야한다. --%>
+
