@@ -1,0 +1,227 @@
+1. 동적 웹프로젝트 생성
+2. Tern 프로젝트로 컨버트
+3. Maven 프로젝트로 컨버트 -> pom.xml 설정
+
+4. DBCP를 설정해보자!!!
+	4-1. META-INF밑에 Context.xml을 만들자
+	// https://tomcat.apache.org/ 사이트 들어가서 해당버전의 Documentation들어가서 
+		JDBC DataSource에 들어간다.     
+		Context configuration의 소스들을 복사하여서 Context.xml에 넣어준다.
+		내가 수정해야할부분은 
+		1. username
+		2. password
+		3. driverClassName
+		4. url 
+			url의 순서는 // jdbc:mariadb://서버아이피:포트번호/DB이름
+	-------------------------------------------------------------------------
+		<?xml version="1.0" encoding="UTF-8"?>
+		<Context>
+		  <Resource 
+		  name="jdbc/mariaDB" 
+		  auth="Container" 
+		  type="javax.sql.DataSource"
+		  maxTotal="100" 
+		  maxIdle="30" 
+		  maxWaitMillis="10000"
+		  username="jspuser" 
+		  password="123456" 
+		  driverClassName="org.mariadb.jdbc.Driver"
+		  url="jdbc:mariadb://localhost:3306/jspdb"/>
+		
+		</Context>
+	-------------------------------------------------------------------------
+	4-2. WEB-INF/web.xml 에 리소스를 추가한다.
+	// https://tomcat.apache.org/ 사이트 들어가서 해당버전의 Documentation들어가서 
+		JDBC DataSource에 들어간다.  
+		web.xml configuration의 소스들중에
+
+  		<resource-ref>
+      			<description>DB Connection</description>
+      			<res-ref-name>jdbc/TestDB</res-ref-name>
+      			<res-type>javax.sql.DataSource</res-type>
+      			<res-auth>Container</res-auth>
+  		</resource-ref>
+		의 소스들을 복사하여서 web.xml에 넣어준다.   
+
+	-------------------------------------------------------------------------
+		<?xml version="1.0" encoding="UTF-8"?>
+		<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+			xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+			id="WebApp_ID" version="4.0">
+			<display-name>DBCPEx</display-name>
+		
+			<!-- DBCP설정 내용 Context.xml을 참조하겠다. 추가 시작 -->
+			<resource-ref>
+				<description>DB Connection</description>
+				<res-ref-name>jdbc/mariaDB</res-ref-name>
+				<res-type>javax.sql.DataSource</res-type>
+				<res-auth>Container</res-auth>
+			</resource-ref>
+			<!-- DBCP설정 내용 Context.xml을 참조하겠다. 추가 종료 -->
+		
+			<welcome-file-list>
+				<welcome-file>index.html</welcome-file>
+				<welcome-file>index.htm</welcome-file>
+				<welcome-file>index.jsp</welcome-file>
+				<welcome-file>default.html</welcome-file>
+				<welcome-file>default.htm</welcome-file>
+				<welcome-file>default.jsp</welcome-file>
+			</welcome-file-list>
+		</web-app>
+	-------------------------------------------------------------------------
+	4-3. JSP파일을 만들어 되는지 테스트해보자!!!
+
+	// https://tomcat.apache.org/ 사이트 들어가서 해당버전의 Documentation들어가서 
+		JDBC DataSource에 들어간다.  
+		Code example 소스들을 복사하여 jsp파일에 넣어준다.
+		해당 소스들을 각각 임포트
+		Context -> javax.naming 임포트
+		InitialContext ->  javax.naming 임포트
+		DataSource -> javax.sql 임포트
+		Connection -> java.sql 임포트
+
+		디비에 연결이 됬는지 확인한다. 여기서 중요한것은 name이 꼭일치해야한다
+		Context , web , jsp테스트파일의 이름이 같아야함!!
+		디비가 연결이 됬는지 찍어보고 종료시키자.
+		
+	------------------------------------------------------------------------
+	DBCPTest1.jsp
+	-------------------------------------------------------------------------
+		<%@page import="java.sql.Connection"%>
+		<%@page import="javax.sql.DataSource"%>
+		<%@page import="javax.naming.InitialContext"%>
+		<%@page import="javax.naming.Context"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		</head>
+		<body>
+			<%
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/mariaDB");
+			Connection conn = ds.getConnection();	
+			out.println("연결 성공 : " + conn);
+			conn.close();
+			%>
+		</body>
+		</html>	
+	-------------------------------------------------------------------------
+	4-4. 연결하고 닫는 자바코드를 클래스로 빼내보자!!!
+	-------------------------------------------------------------------------
+	kr.human.jdbc.JDBCUtil.java
+	-------------------------------------------------------------------------
+		package kr.human.jdbc;
+		
+		import java.sql.Connection;
+		import java.sql.ResultSet;
+		import java.sql.SQLException;
+		import java.sql.Statement;
+		
+		import javax.naming.Context;
+		import javax.naming.InitialContext;
+		import javax.naming.NamingException;
+		import javax.sql.DataSource;
+		
+		public class JDBCUtil {
+			// DB Pool로 부터 컨넥션을 얻어온다.
+			public static Connection getConnection() {
+				Connection conn = null;
+				try {
+					Context initContext = new InitialContext();
+					Context envContext  = (Context)initContext.lookup("java:/comp/env");
+					DataSource ds = (DataSource)envContext.lookup("jdbc/mariaDB");
+					conn = ds.getConnection();
+				} catch (NamingException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return conn;
+			}
+			// 닫는 메서드 3개
+			public static void close(Connection conn) {
+				try {
+					if(conn!=null) conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			public static void close(Statement stmt) {
+				try {
+					if(stmt!=null) stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			public static void close(ResultSet rs) {
+				try {
+					if(rs!=null) rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			// 롤백메서드 1개
+			public static void rollback(Connection conn) {
+				try {
+					if(conn!=null) conn.rollback();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	-------------------------------------------------------------------------
+	4-5. JSP파일을 만들어 되는지 테스트해보자!!!
+	-------------------------------------------------------------------------
+	DBCPTest2.jsp
+	-------------------------------------------------------------------------
+		<%@page import="kr.human.jdbc.JDBCUtil"%>
+		<%@page import="java.sql.PreparedStatement"%>
+		<%@page import="java.sql.ResultSet"%>
+		<%@page import="java.sql.Statement"%>
+		<%@page import="java.sql.Connection"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		</head>
+		<body>
+			<%
+				Connection conn = null;    //연결
+				Statement  stmt = null;    // 명령
+				PreparedStatement pstmt = null;  //미완성명령어
+				ResultSet  rs = null; //결과
+				try{
+					// 1. 연결 얻기
+					conn = JDBCUtil.getConnection();
+					// 프랜젝션 시작(자동커밋 취소)
+					conn.setAutoCommit(false);
+					// --------------------------------------------------------------------
+					// 2. 사용 (이부분만 변경된다.)
+					out.println("연결 성공 : " + conn + "<br>");
+					
+					
+					// --------------------------------------------------------------------
+					// 에러가 없으면  DB에 적용해라.
+					conn.commit();
+				}catch(Exception e){
+					// 에러가 있으면 모든 명령을 취소한다.
+					JDBCUtil.rollback(conn);
+					e.printStackTrace();
+				}finally{
+					// 3. 닫기
+					JDBCUtil.close(rs);
+					JDBCUtil.close(stmt);
+					JDBCUtil.close(pstmt);
+					JDBCUtil.close(conn);
+				}
+			%>
+		</body>
+		</html>	
+	-------------------------------------------------------------------------
