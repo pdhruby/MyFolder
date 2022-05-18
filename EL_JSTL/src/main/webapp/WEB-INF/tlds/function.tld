@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" version="2.1">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.2</jsp-version>
+	<short-name>JSPTag</short-name>
+	<function>
+		<name>comma</name>
+		<function-class>kr.human.tag.ELMethod</function-class>
+		<function-signature>String comma(int)</function-signature>
+	</function>
+	
+		<function>
+		<name>rand100</name>
+		<function-class>kr.human.tag.ELMethod</function-class>
+		<function-signature>int rand100()</function-signature>
+	</function>
+</taglib>

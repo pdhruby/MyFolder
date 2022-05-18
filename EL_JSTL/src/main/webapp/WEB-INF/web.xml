@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>EL_JSTL</display-name>
+  
+  <!-- 초기화 파라메터 등록 : 웹애플리케이션이 시작될때 변수를 등록할수 있다. -->
+	<context-param>
+		<param-name>db</param-name>
+		<param-value>mariaDB</param-value>
+	</context-param>
+	<context-param>
+		<param-name>user</param-name>
+		<param-value>jspuser</param-value>
+	</context-param>
+	<context-param>
+		<param-name>pw</param-name>
+		<param-value>123456</param-value>
+	</context-param>
+	 <!-- 태그를 등록한다 -->
+	 <jsp-config>
+	 	<taglib>
+	 		<taglib-uri>/tlds/function.tld</taglib-uri>
+	 		<taglib-location>/WEB/INF/tlds/function.tld</taglib-location>
+	 	</taglib>
+	 	
+	 </jsp-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
