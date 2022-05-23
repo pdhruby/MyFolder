@@ -1,0 +1,116 @@
+개발환경 설치하기
+
+======================================================================
+
+1. Open JDK를 설치한다.
+ --  벤더별 OPEN JDK 검색. (https://adoptopenjdk.net/index.html) 에서 다운로드를 받는다.
+	WINDOWS X 64  .msi 다운로드 (자동으로 자바홈까지 잡아준다!!!!!!!!!) 
+	프로그램 다운후 설치시 자바홈 설치옵션 체크후 다운로드 한다.
+2.JDK 설치확인방법
+      cmd 창을 연다
+      set JAVA_HOME [엔터]
+      set path [엔터]
+      java -version  [엔터]
+      javac [엔터] ==> path가 작동하는지 확인 ==>> 컴파일러 옵션이 보이면 성공
+
+3. 컴파일을 해보자!!
+ HelloWorld.java파일을 아래와 같이 만든다.
+======================================================================
+ public class HelloWorld{
+	public static void main(String[] args){
+		System.out.println("zzzㅋㅋㅋ!!!");
+	}
+
+}
+======================================================================
+컴파일을 해보자
+파일이 있는 폴더에서 주소창에 cmd를 치면 해당 폴더로 자동으로 이동한다.
+javac HelloWorld.java [엔터]
+아무 메세지도 나오지 않으면 컴파일 성공!!
+Hello World!!!가 출력된다.
+
+======================================================================
+개발툴(IDE)을 설치해보자.
+대부분 Eclipse를 사용한다. 경우에 따라 인텔리j를 사용할 수도 있다.
+======================================================================
+1.Eclipse를 다운 받는다, 
+  https://www.eclipse.org/downloads/packages/ 들어가서 회사가 쓰는 버전으로 다운받는다.
+  (Eclipse IDE for Enterprise Java and Web Developers )
+ 원하는 위치에 압축을 해제하면 설치가 완료된다. workspace 폴더를 만들고 eclipse를 실행하여 지정 폴더를 지정하여 실행한다.
+
+2.WAS(웹 애플리케이션 서버)를 설치하다.
+ 우리는 JSP가 가능한 애플리케이션 컨테이너를 설치한다. tomcat 9.0을 설치하자!!!
+ https://tomcat.apache.org/ 에서 자신의 플랫폼에 맞는 파일을 다운로드 받는다. 반드시 압축버전으로 받자.
+
+다운받은것을  압축을 풀고  환경변수를 등록해야한다.
+	1.톰캣 폴더로 들어가서 해당 주소줄 복사(bin이 보이는곳에서 주소줄복사하기)
+	2.내PC-> 속성 -> 고급시스템설정  -> 환경변수 -> 시스템변수들어가기 
+	  변수이름 : CATALINA_HOME    변수값 : 톰캣복사주소줄 입력후 확인
+	3.톰캣폴더-> bin폴더에 들어가서 startup.bat 실행후 인터넷익스플로러에서 localhost:8080 검색
+	4. 톰켓 홈페이지가 뜨면 서버 실행 성공 (실행이 되지 않을때는 환경변수에  JAVA_HOME이 있는지 확인하고 다시 해본다.
+
+	이클립스에 서버를 등록해보자
+	하단에 서버탭을 찾는다. 서버탭이 보이지 않으면 퍼스펙티브를 JAVAEE로 변경한다.
+	new Server를 더블클릭하여 나타난 창에서 아파치의 톰캣버전을 자신이 설치한 버전을 선택한다.
+	(경로설정시 톰캣의 bin이 보이는 폴더까지로 설정해준다).
+	서버의 초록색 화살표를 클릭하여 실행해본다.
+
+
+2. 필요한 플러그인 설치 및 UTF-8
+	1.emmet
+	2.properties editor
+	3.tern eclipse
+	4.dbeaver
+
+
+	1.emmet
+	   https://emmet.io/download/ 들어가서 eclipse/aptana 클릭 
+	   Installatiopn 에 있는 add부분 -> http://download.emmet.io/eclipse/updates/ 복사
+	   이클립스 실행후 help-> Install new Software - add버튼을 눌러 이름과 복사한 주소를 입력후 설치
+
+	2.properties editor
+  		 http://propedit.sourceforge.jp/eclipse/updates
+  	     Help - Install new Software - add버튼을 눌러 이름과 복사한 주소를 넣고 설치를 진행
+		(hyperlinkDetector랑 PropertiesEditor만 체크하고 설치진행 (또는 프로퍼티만 체크하고 진행)
+ 		.
+
+  	3.tern eclipse
+		http://oss.opensagres.fr/tern.repository/1.2.0/
+   		Help - Install new Software - add버튼을 눌러 이름과 복사한 주소를 넣고 설치를 진행
+
+	4.Dbeaver
+	https://dbeaver.io/update/latest/
+   	Help - Install new Software - add버튼을 눌러 이름과 복사한 주소를 넣고 설치를 진행'
+
+3.이클립스 환경설정을 한다.
+window-preferences -> general -> workspace  -> utf-8 설정
+	파일연결에서  XML을 XMLeditor로, sql을 dbeaver로 변경 
+key 중복되면 key들어가서 바꿔준다.
+emmet 에서 1. ,jsp 추가한다
+	    2.VARIABLES -> lang : ko 
+	          		locale : ko-KR
+web -> client-side javascirpt - tern-> development -> repository 해당 자동사용기능쓸꺼 적용하기
+      ->	CSS Files -> UTF-8 로 바꿔주기
+      ->	HTML Files  -> UTF-8 로 바꿔주기
+      ->	JSP Files -> UTF-8 로 바꿔주기
+
+============================================================================
+마리아디비 삭제후 다시 재설치
+https://mariadb.org/  들어가서  다운로드
+
+다운로드받고 설치시 use UTF8 as default server's character set 반드시 체크하기!!
+설치후 마리아 디비 실행후 셋팅설정
+ root - > 비밀번호 입력후 실행 (만약 실행이 안되면  라이브러리를 libmysql.dll로 변경)
+
+
+==============================================================================
+오라클 XE를 설치해보자!!!!!!
+======================================================================
+1. OracleXE112_Win64.zip 파일을 반드시 공백이나 한글이 포함되지 않은 폴더에 압축을 해제한다.
+2. 톰캣을 미리 실행해 놓는다.
+3. setup.exe파일을 실행하여 설치를 한다.
+   http포트 번호가 8081이 아니면 변경한다.
+   비번을 입력하고 그냥 설치 진행한다.
+
+
+

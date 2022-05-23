@@ -1,0 +1,39 @@
+메이븐 설치
+1) https://maven.apache.org/download.cgi 에서 메이븐을 다운로드 받는다.
+2) c:\에 압축을 해제한다. bin폴더까지의 경로를 복사한다.
+3) 시스템 고급설정에서 path에 추가한다.
+4) cmd창을 열어서 확인한다.
+	mv -v 설치 잘되었는지 확인.
+
+오라클exe 들어가서  -> product -> jdbc들어가서  -> lib 들어가서 cmd   
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar 
+실행
+-----------
+로컬 저장소에 설치
+
+ojdbc6.jar
+$ mvn install:install-file -Dfile={Path/to/your/ojdbc6.jar} -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar
+예)jar파일이 있는 폴더로 이동해서
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
+
+ojdbc7.jar
+$ mvn install:install-file -Dfile={Path/to/your/ojdbc7.jar} -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
+예)jar파일이 있는 폴더로 이동해서
+mvn install:install-file -Dfile=ojdbc7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
+
+의존성 추가
+-----------
+<!-- ojdbc6.jar example -->
+<dependency>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc6</artifactId>
+    <version>11.2.0.3</version>
+</dependency>
+
+<!-- ojdbc7.jar example -->
+<dependency>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc7</artifactId>
+    <version>12.1.0</version>
+</dependency>
+
