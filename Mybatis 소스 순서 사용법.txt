@@ -1,0 +1,165 @@
+Mybatis사용하기
+--------------------
+
+1. pom.xml에 사용하는 DB의 드라이버와 Mybatis를 디펜던시에에 추가한다.
+------------------------------------------------------------------------------
+		<!-- 오라클 -->
+		<!-- ojdbc6.jar example -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>		
+
+		<!-- Mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.10</version>
+		</dependency>
+------------------------------------------------------------------------------
+
+2. DB연결 정보를 저장한 프로퍼티 파일을 만들어 준다. 우리는 복사한다.
+------------------------------------------------------------------------------
+db.properties파일
+===============
+# Oracle DB 연결 정보
+#o.driver=oracle.jdbc.driver.OracleDriver
+#o.url=jdbc:oracle:thin:@127.0.0.1:1521:XE
+# log4jdbc-remix
+o.driver=net.sf.log4jdbc.DriverSpy
+o.url=jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE
+o.username=jspuser
+o.password=123456
+
+------------------------------------------------------------------------------
+
+3. Mybatis 설정파일을 만든
+------------------------------------------------------------------------------
+이름명은 자신이 정한다.
+ex)mybatis-config.xml
+==================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 프로퍼티 파일을 사용하겠습니다 -->
+<properties resource="db.properties" />
+<!-- 타입의 별칭을 지정한다. 줄여서 사용하겠다. VO를 만들떄마다 추가한다.-->
+<typeAliases>
+	
+</typeAliases>
+
+<!-- DB 연결 정보 -->
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${o.driver}"/>
+        <property name="url" value="${o.url}"/>
+        <property name="username" value="${o.username}"/>
+        <property name="password" value="${o.password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <!-- SQL명령이 들어있는 매퍼파일을 지정한다. 맵퍼파일을 여러개 지정이 가능하다. -->
+  <mappers>
+    <mapper resource="testMapper.xml"/>
+  </mappers>
+</configuration>
+------------------------------------------------------------------------------
+4. SQL 명령어들을 지정하는 맵퍼파일을 만든다. 
+   맵퍼파일마다 namespace를 다르게 지정해야 id값을 구분하기 편하다. 
+  스프링에서는 namespcae 값을 DAO인터페이스의 패키지 전체 경로로 줘야 한다.
+=================
+testMapper.xml
+=================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+  <select id="selectToday" resultType="string">
+    select sysdate from dual
+  </select>
+</mapper>
+------------------------------------------------------------------------------
+5. SqlSessionFactory객체를 얻는 클래스를 만들어준다.
+------------------------------------------------------------------------------
+MybatisApp.java
+=================
+package kr.human.mybatis;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+
+public class MybatisApp {
+	// 1. 정적멤버로 팩토리 변수 선언하기
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	// 2. 정적변수를 초기화 하는 정적초기화 블럭을 만든다.
+	static {
+		String resource = "mybatis-config.xml";
+		try {
+			InputStream inputStream = Resources.getResourceAsStream(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 3. 외부에서 객체를 얻도록 public 메서드를 작성한다.
+	public static SqlSessionFactory getSqlSessionFactory() {
+		return sqlSessionFactory;
+	}
+}
+
+---------------------------------------------------------------------------
+6. 설정이 올바른지 JSP에서 테스트해보자!!!
+---------------------------------------------------------------------------
+mybatisTest.jsp
+===============
+<%@page import="kr.human.mybatis.MybatisApp"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		// 이 모양이 서비스클래스의 메서드의 내용이다.
+		SqlSession sqlSession = null;
+		try{
+			sqlSession = MybatisApp.getSqlSessionFactory().openSession(false);
+			//-----------------------------------------------		
+			// 이 부분만 변경된다. 
+			String today = sqlSession.selectOne("test.selectToday");
+			out.println("DB 날짜 : " + today + "<br><hr>");
+			//-----------------------------------------------		
+			sqlSession.commit();		
+		}catch(Exception e){
+			sqlSession.rollback();
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	%>
+</body>
+</html>
+---------------------------------------------------------------------------
+
+7. JSP파일을 실행해서 오류가 없으면 기본셑팅은 완료된것이다.
+결과
+====
+DB 날짜 : 2022-05-26 14:31:35
