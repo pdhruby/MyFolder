@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 프로퍼티 파일을 사용 하겠습니다. -->
+	<properties resource="db.properties" />
+	<!-- 타입의 별칭을 지정한다. 줄여서 사용하겠다. VO를 만들때마다 추가한다. -->
+	<typeAliases>
+		<package name="kr.human.upload.vo"/>
+	</typeAliases>
+	<!-- DB연결 정보 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${o.driver}" />
+				<property name="url" value="${o.url}" />
+				<property name="username" value="${o.username}" />
+				<property name="password" value="${o.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- SQL명령이 들어있는 매퍼파일을 지정한다. 맵퍼파일을 여러개 지정이 가능하다.-->
+	<mappers>
+		<mapper resource="testMapper.xml" />
+	</mappers>
+</configuration>
