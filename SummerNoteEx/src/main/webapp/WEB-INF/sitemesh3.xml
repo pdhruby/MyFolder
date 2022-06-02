@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+  <mapping path="/*" decorator="/decorator/layout.jsp"/>
+  <mapping path="/board/*" decorator="/decorator/layout2.jsp"/>
+  <mapping path="*/index.jsp" exclude="true"/>    <!-- sitemesh 예외 url  -->
+  <mapping path="/admin/*" exclude="true"/>    <!-- sitemesh 예외 url  -->
+</sitemesh>
