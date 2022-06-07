@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+	var obj1 = {};
+	var obj2 = new Object();
+	
+	document.write(typeof(obj1) + " : " + obj1 + "<br>");
+	document.write(typeof(obj2) + " : " + obj2 + "<br><hr>");
+
+	
+	object = {name:"한사람",age:33};
+	
+	object.toString = function(){
+		return this.name + "("+this.age+"세)";
+	}
+	
+	document.write("<ul>");
+	for(key in object){
+		document.write("<li>" + key + ":" + object[key] + "</li>");
+	}
+	document.write("</ul><hr>");
+
+	document.write(object);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

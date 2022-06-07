@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// BOM
+	window.onload = function(){ // 윈도우가 모두 로드된 후에 실행하라
+		
+		document.getElementById("btn1").onclick = function(){
+			window.open('');
+		}
+		document.getElementById("btn2").onclick = function(){
+			window.open('https://www.naver.com');
+		}
+		document.getElementById("btn3").onclick = function(){
+			window.open('Ex01.html','myWin');
+		}
+		document.getElementById("btn4").onclick = function(){
+			window.open('Ex01.html','myWin' , 'width=600 , height =30');
+		}
+		document.getElementById("btn5").onclick = function(){
+			var  child = window.open('','myWin2' , 'width=600 , height =230');
+			child.document.write('<h1>새로운 창!!!</h1>');
+		}
+		
+	}
+</script>
+</head>
+<body>
+	<button id="btn1" >눌러줘 1</button> <br />
+	<button id="btn2" >눌러줘 2</button> <br />
+	<button id="btn3" >눌러줘 3</button> <br />
+	<button id="btn4" >눌러줘 4</button> <br />
+	<button id="btn5" >눌러줘 5</button> <br />
+</body>
+</html>

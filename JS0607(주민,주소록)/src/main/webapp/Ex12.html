@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//JSON 다루기
+	var obj = {name : "한사람", age : 32, gender: true};
+	
+	
+	for(key in obj){
+		document.write(key + " : " + obj[key] + "<br>");
+	}
+		document.write(obj + "<br>");
+	
+		var jsonStr = JSON.stringify(obj); // JSON 객체를 문자열로
+		document.write(typeof(jsonStr) +  " : " +  jsonStr + "<br>");
+		
+		var jsonObj = JSON.parse(jsonStr); // 문자열을 JSON객체로
+		document.write(typeof(jsonObj) +  " : " +  jsonObj + "<br>");
+		
+		
+		
+		
+		var conan = new Audio();
+		conan.src = 'conan.mp3';
+		//conan.play();
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

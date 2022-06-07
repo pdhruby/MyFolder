@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+	// 배열을 다뤄보자
+	var ar = [];
+	for(i=0;i<10;i++){
+		ar[i] = parseInt( Math.random()*101); // 0~100까지의 난수로 배열 10개 초기화 
+	}
+	document.write(ar.length + "개<br>");
+	document.write(ar + "<br><hr>");
+	document.write("요소를 더해준다 : " + ar.concat() + "<br><hr>");
+	document.write("요소를 더해준다 : " + ar.join() + "<br><hr>");
+	document.write("요소를 뒤집어준다. : " + ar.reverse() + "<br><hr>");
+	// 문자열 기준 정렬
+	ar.sort();
+	document.write("오름차순 정렬 : " + ar + "<br><hr>");
+	// 숫자 역순
+	ar.sort(function(a,b){
+		return b-a;
+	});
+	document.write("내림차순 정렬 : " + ar + "<br><hr>");
+	// 숫자 오름차순
+	ar.sort(function(a,b){
+		return a-b;
+	});
+	document.write("오름차순 정렬 : " + ar + "<br><hr>");
+	ar.push(111);
+	ar.push(222);
+	ar.push(333); // 요소 추가
+	ar[13] = 444;
+	document.write(ar.length + "개<br>");
+	document.write(ar + "<br><hr>");
+	ar.pop();
+	ar.pop();
+	ar.pop();
+	ar.pop(); // 뒤에서부터 제거
+	document.write(ar.length + "개<br>");
+	document.write(ar + "<br><hr>");
+	
+</script>
+</head>
+<body>
+	
+</body>
+</html>

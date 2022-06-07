@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+
+	var a = 123;
+	var b = new Number(123);
+	
+	document.write(typeof(obj1) + " : " + a + "<br>");
+	document.write(typeof(obj2) + " : " + b + "<br><hr>");
+
+	//타입 검사
+	document.write((typeof(a) =='number') + "<br>"); // true
+	document.write((typeof(b) =='number') + "<br><hr>"); // false
+
+	document.write((a.constructor == Number)+ "<br>"); // true
+	document.write((b.constructor == Number) + "<br><hr>"); //true
+	
+	document.write(!isNaN(a)+ "<br>"); // true
+	document.write(!isNaN(b) + "<br><hr>"); //true
+	
+
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

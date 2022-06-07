@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript"> 
+	
+	// 배열을 다뤄보자
+	var ar = [11,22,33,44,55,];
+	document.write(ar.length + "개<br>");
+	document.write(ar + "<br><hr>");
+	for(i=0; i<ar.length; i++){
+		document.write(ar[i] + "<br>");
+	}
+	document.write("<hr>");
+
+	for(i in ar){
+		document.write(ar[i] + "<br>");
+	}
+	document.write("<hr>");
+	
+	
+	for(i of ar){ // 구형 브라우저에서는 지원되지 않는다.
+		document.write(i + "<br>");
+	}
+	document.write("<hr>");
+	
+</script>
+</head>
+<body>
+</body>
+</html>

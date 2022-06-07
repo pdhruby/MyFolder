@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+	function check(){
+		/*
+		1. 2 3 4 5 6 7 8 9 2 3 4 5를 각각의 자리에 곱하여 합을 구한다.
+		2. 합을 11로 나눈 나머지를 구한다.
+		3. 너머지를 11에서 뺸다.
+		4. 3의 결과를 10으로 나눈 나머지를 구한다.
+		5. 4의 결과가 13번째 자리와 같으면 맞는 주민번호입니다.
+		
+		1 1 1 1 1 1 1 1 1 1 1 1 ?
+	 *	2 3 4 5 6 7 8 9 2 3 4 5 
+		2+3+4+5+6+7+8+9+2+3+4+5= 58
+		58 % 11  = 3
+		11 - 3 = 8
+		8 % 10 = 8
+		13번째 자리가 8이면 맞는 주민번호입니다.
+		*/
+		var j1 = document.getElementById("j1");
+		if(j1.value.length!=6){
+			alert('주민번호 앞자리는 6자리 이어야 합니다.');
+			j1.value='';
+			j1.focus();
+			return;
+		}
+		if(isNaN(j1.value)){
+			alert('주민번호 앞자리는 숫자로만 입력해야 합니다.');
+			j1.value='';
+			j1.focus();
+			return;
+		}
+		var j2 = document.getElementById("j2");
+		if(j2.value.length!=7){
+			alert('주민번호 뒷자리는 7자리 이어야 합니다.');
+			j2.value='';
+			j2.focus();
+			return;
+		}
+		if(isNaN(j2.value)){
+			alert('주민번호 뒷자리는 숫자로만 입력해야 합니다.');
+			j2.value='';
+			j2.focus();
+			return;
+		}
+		var value = j1.value + j2.value; // 이렇게 하면 value에는 숫자13자리의 주민번호가 만들어 진다.
+		// alert(value);
+		var sum = 0;
+		for(i=0;i<12;i++){
+			sum += value.charAt(i) * (i%8+2);
+		}
+		sum = (11-(sum%11))%10;
+		if(sum==value.charAt(12)){
+			alert(value.substr(0,6) + "-" + value.substr(6,7) + "는 맞는 주민번호!!!");
+		}else{
+			alert(value.substr(0,6) + "-" + value.substr(6,7) + "는 틀린 주민번호!!!");
+		}
+	}
+	function moveNext(obj, len, id){
+		var value = obj.value; // 첫번째 인수의 값을 구한다.
+		if(value.length == len){ // 값의 길이가 두번째인수와 같다면 
+			document.getElementById(id).focus(); //세번째 인수로 가라!!!
+		}
+	} 
+</script>
+</head>
+<body>
+	주민번호 입력 : 
+	<input type="text" name="j1" id="j1" maxlength="6" onkeyup="moveNext(this, 6,'j2')"/>
+	-
+	<input type="password" name="j2" id="j2" maxlength="7"  onkeyup="moveNext(this, 7,'checkBtn')"/>
+	<input type="button" value="주민번호 확인하기" onclick="check()" id="checkBtn"/>
+</body>
+</html>

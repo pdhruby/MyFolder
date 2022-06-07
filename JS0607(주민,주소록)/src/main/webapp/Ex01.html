@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+
+	var a = 123;
+	var b = new Number(123);	
+
+	document.write(typeof(a) + " : " + a  + "<br>");
+	document.write(typeof(b) + " : " + b  + "<br>");
+	
+	document.write(a.toString() + "<br>");
+	document.write(b.toString() + "<br>");
+	
+	/*
+	a.method = function() {
+		return "기본타입에 메서드 추가";
+	}
+	
+	document.write(a.method() + "<br>");
+	함수가 아니다.
+	*/
+	
+	Number.prototype.method = function () {
+		return "객체타입에 메서드 추가";
+		
+	}
+	
+	// 내장 객체인 Number에 메서드를 추가 가능하다. 더불어 기본타입에서도 호출 가능하다.
+	// 기본타입에 .을 찍으면 객체로 자동 형변환된 메서드 호출 가능
+	document.write(a.method() + "<br>");
+	
+	
+	var c = 345;
+	document.write(c.method() + "<br>");
+</script>
+</head>
+<body>
+	
+
+	
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// Date객체
+	var today = new Date();
+	document.write(today + "<br>");
+	document.write(today.getFullYear() + "<br>");
+	document.write(today.getMonth()+1 + "<br>");
+	document.write(today.getDate() + "<br>"); // 일
+	document.write(today.getDay() + "<br>");  // 요일
+	document.write(today.getHours() + "<br>");
+	document.write(today.getMinutes() + "<br>");
+	document.write(today.getSeconds() + "<br>");
+	document.write(today.getMilliseconds() + "<br>");
+	// setInterval(함수, 시간) : 지정시간마다 함수를 실행한다. 시간은 1/1000초 단위이다.
+	// setTimeout(함수, 시간) : 지정이 지난후 함수를 실행한다. 시간은 1/1000초 단위이다.
+	setInterval(function(){
+		var today = new Date();
+		document.title = today.getHours() + ":"+ today.getMinutes() + ":" + today.getSeconds();
+	}, 1000);
+
+		
+</script>
+</head>
+<body>
+
+</body>
+</html>
