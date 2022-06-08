@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var min=2, max=10, index=2; //최소개수,최대개수,현재값
+	
+	function appendFile(){
+		if(index==max){
+			alert('최대 ' + max + "개까지만 가능 합니다.");
+			return;
+		}
+		++index;// 현재값 증가
+		var divNode = document.createElement("div"); // div 태그 작성
+		divNode.setAttribute("id", "box"+index); // id 속성부여
+		var fileNode = document.createElement("input"); // input 태그 작성
+		fileNode.setAttribute("id", "file"+index); // id 속성부여
+		fileNode.setAttribute("name", "file"+index); // name 속성부여
+		fileNode.setAttribute("type", "file");// type 속성부여
+		divNode.appendChild(fileNode); // div태그 밑으로 input태그 넣기
+		document.getElementById("fileBox").appendChild(divNode);// fileBox자식으로 div태그 넣기
+	}
+	
+	function removeFile(){
+		if(index==min){
+			alert('최소 ' + min + "개는 있어야 합니다.");
+			return;
+		}
+		var divNode = document.getElementById("box"+index); // 지울 요소를 찾는다.
+		document.getElementById("fileBox").removeChild(divNode); // 자식노드를 지운다.
+		--index;
+	}
+</script>
+<style type="text/css">
+	div {margin-bottom: 5px;}
+</style>
+</head>
+<body>
+	<button onclick="appendFile()"> + </button>
+	<button onclick="removeFile()"> - </button>
+	<hr />
+	<div id="fileBox">
+		<div id="box1"><input type="file" name="file1" id="file1"/></div>
+		<div id="box2"><input type="file" name="file2" id="file2"/></div>
+	</div>
+</body>
+</html>

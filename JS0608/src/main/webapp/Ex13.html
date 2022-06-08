@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 이벤트 강제 발생하기
+	window.onload = function(){
+		document.getElementById("btn1").onclick = clickBtn1;
+
+		document.getElementById("btn2").onclick = function(){
+			document.getElementById("counter2").innerHTML = 
+				document.getElementById("counter2").innerHTML * 1 + 1;
+			clickBtn1(); //  함수를 호출해서 이벤트 강제 발생
+		};
+		document.getElementById("btn3").onclick = function(){
+			//document.getElementById("btn1").click();
+			// 클릭메서드를 호출하여 이벤트 강제 발생
+			document.getElementById("btn2").click(); 
+		};
+	}
+	
+	function clickBtn1(){
+		document.getElementById("counter1").innerHTML = 
+			document.getElementById("counter1").innerHTML * 1 + 1;
+	}
+</script>
+</head>
+<body>
+	<button id="btn1">1번카운터 증가</button>
+	<button id="btn2">두개 같이 증가</button>
+	<button id="btn3">눌러봐</button>
+	<hr />
+	<h2 id="counter1">0</h2>
+	<h2 id="counter2">0</h2>
+</body>
+</html>

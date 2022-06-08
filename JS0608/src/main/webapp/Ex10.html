@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	widnow.onload = function(){
+		var imgs = document.getElementsByTagName("img");
+		alert(imgs.length+"개!!!!");
+		for(i=0; i<imgs.length; i++){
+			imgs[i].src = 'images/' +(i+1) +'.png';
+			imgs[i].setAttribute("width",(i+1)*50);
+		}
+	}
+
+</script>
+
+</head>
+<body>
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	<img/><br />
+	
+
+
+</body>
+</html>

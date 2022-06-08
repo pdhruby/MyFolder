@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function(){
+		// 이벤트 연결하기 1
+		document.getElementById("btn1").onclick = function(){
+			alert(this.innerHTML);	
+		}
+		// 이벤트 연결하기 2
+		document.getElementById("btn2").addEventListener("click", function(e) {
+			alert(this.innerHTML);
+		});
+		
+		for(i=3;i<6;i++){
+			document.getElementById("btn"+1).onclick = function(){
+				alert(this.innerHTML);
+			}
+		}
+		
+		document.getElementById("btn6").onclick = function(){
+			alert(this.innerHTML);
+			this.onclick = null; // 이벤트 제거
+		}
+		
+		var color1 = ['red','blue','green','pink'];
+		var color2 = ['silver','skyblue','yellow','brown'];
+		var index = 0;
+		document.getElementById("btn7").onclick = function(){
+			this.style.color = color1[index];
+			this.style.backgroundColor = color2[index];
+			index = ++index%color1.length;
+		}
+	}
+		
+
+</script>	
+</head>
+<body>
+	
+	<!-- button[id='btn$']{눌러줘 $}*5  -->
+	<button id="btn1">눌러줘 1</button>
+	<button id="btn2">눌러줘 2</button>
+	<button id="btn3">눌러줘 3</button>
+	<button id="btn4">눌러줘 4</button>
+	<button id="btn5">눌러줘 5</button>
+	<button id="btn6">눌러줘 6</button>
+	<button id="btn7">눌러줘 7</button>
+</body>
+</html>

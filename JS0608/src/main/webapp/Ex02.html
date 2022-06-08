@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function(){
+		var message = "안녕하세요!!! 개발자를 꿈꾸는 꿈털이입니다. 반갑습니다.";
+		var i=0,sw=1;
+		setInterval(function(){
+			i += sw;
+			document.getElementById("text").value = message.substr(0, i);
+			if(i==message.length || i==0){
+				sw *= -1;
+			}
+		}, 30);
+	}
+</script>
+</head>
+<body>
+	<input type="text" id="text" style="width: 90%; border: 1px solid gray;padding:10px;margin: 20px;"/>
+</body>
+</html>

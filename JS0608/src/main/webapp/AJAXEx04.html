@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX 연습</title>
+	<script>
+	function loadDoc() {
+	  const xhttp = new XMLHttpRequest(); // AJAX를 가능하게 하는 자바 스크립트 객체
+	  // 응답이 있으면 실행되는 함수 지정
+	  xhttp.onload = function() {
+		  // 응답이 완료되고 결과를 성공적을 받았을때
+		  if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("result").innerHTML = this.responseText;
+		  }else{
+			alert('에러야!!!!');  
+		  }
+	  }
+	  // AJAX 호출 준비
+	  xhttp.open("GET", "helloGet.jsp?name="+ encodeURIComponent("한사람"), true);
+	  // 서버에 전송
+	  xhttp.send();
+	}
+	</script>
+	<style type="text/css">
+		#demo { width: 600px;height: 200px; padding: 10px; text-align: center; margin: auto;border: 1px solid gray;}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<hr />
+		<div id="result"></div>
+		<hr />
+	</div>
+	<button type="button" onclick="loadDoc()">인사하기</button>
+</body>
+</html>

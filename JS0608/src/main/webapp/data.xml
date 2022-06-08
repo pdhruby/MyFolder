@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computers>
+	<computer>
+		<cpu>486</cpu>
+		<ram>4GB</ram>
+	</computer>
+	<computer>
+		<cpu>586</cpu>
+		<ram>8GB</ram>
+	</computer>
+	<computer>
+		<cpu>686</cpu>
+		<ram>16GB</ram>
+	</computer>
+	<computer>
+		<cpu>786</cpu>
+		<ram>32GB</ram>
+	</computer>
+
+</computers>

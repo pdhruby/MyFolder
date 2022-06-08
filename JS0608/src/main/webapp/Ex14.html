@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var value = document.getElementById("name1").value;
+		if(value ==null || value.trim().length ==0){
+			alert('이름은 반드시 입력해야합니다')
+			document.getElementById("name1").value='';
+			document.getElementById("name1").focus();
+			return false; // 기본 이벤트 제거
+		}
+	}
+	
+	window.onload = function(){
+		document.getElementById("myform").onsubmit = function() {
+			var value = document.getElementById("name2").value;
+			if(value ==null || value.trim().length ==0){
+				alert('이름은 반드시 입력해야합니다')
+				document.getElementById("name2").value='';
+				document.getElementById("name2").focus();
+				return false; // 기본 이벤트 제거
+			}
+		}
+	}
+
+</script>
+</head>
+<body>
+
+	<form action="result1.jsp" onsubmit="return check()">
+		<input type="text" name="name" id="name1" />
+		<input type="submit" value="전송" />
+	</form>
+	<hr />
+	<form action="result2.jsp" id = "myform">
+		<input type="text" name="name" id="name2" />
+		<input type="submit" value="전송" />
+	</form>
+	
+
+</body>
+</html>

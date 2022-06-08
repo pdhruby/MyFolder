@@ -1,0 +1,27 @@
+[
+	{
+	  "name":"한사람",
+	  "age":23,
+	  "gender":true
+	 },
+	{
+	  "name":"두사람",
+	  "age":18,
+	  "gender":false
+	 },
+	{
+	  "name":"세사람",
+	  "age":34,
+	  "gender":true
+	 },
+	{
+	  "name":"네사람",
+	  "age":77,
+	  "gender":false
+	 },
+	{
+	  "name":"오사람",
+	  "age":44,
+	  "gender":false
+	 }
+ ]
