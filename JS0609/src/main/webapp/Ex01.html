@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 연습</title>
+<script type="text/javascript">
+	// 이벤트 전달 
+	window.onload = function(){
+		
+	}
+</script>
+<style type="text/css">
+	div,h,p {border: 3px solid gray; padding : 20px;}
+</style>
+</head>
+<body>
+	<!-- div>div>h1>p{나는 문단입니다.}  -->
+	<div onclick="alert('밖의 div');">
+		<div onclick="alert('안의 div');">
+			<h1 onclick="alert('h1태그');">
+				<p onclick="alert('p태그');">나는 문단입니다.</p>
+			</h1>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		// 자식 선택자
+		$("div>ul").css('color','red');
+		// 자손 선택자
+		$("div ul *").css('backgroundColor','pink');
+	});
+</script>
+</head>
+<body>
+
+
+	<div>
+		<ul>
+			<li>아이템 01</li>
+			<li>아이템 02</li>
+			<li>아이템 03</li>
+			<li>아이템 04</li>
+			<li>아이템 05</li>
+			<li>아이템 06</li>
+		</ul>
+	</div>
+
+</body>
+</html>

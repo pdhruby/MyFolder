@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		//태그 선택자
+		$("h1").css('color','orange');
+		$("p").css({'color':'brown','backgroundColor':'pink'})
+				.click(function(){
+					alert($(this).html());
+				});
+	
+	
+	});
+</script>
+</head>
+<body>
+	<!--  h1{나는제목 $$}+p{나는 문단 $$})*4 -->
+	<h1>나는제목 01</h1>
+	<p>나는 문단 01</p>
+	<h1>나는제목 02</h1>
+	<p>나는 문단 02</p>
+	<h1>나는제목 03</h1>
+	<p>나는 문단 03</p>
+	<h1>나는제목 04</h1>
+	<p>나는 문단 04</p>	
+</body>
+</html>
+

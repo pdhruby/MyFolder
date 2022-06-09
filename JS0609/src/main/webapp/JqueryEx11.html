@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		$.each([11,22,33,44],function(i,item){
+			document.write(i + ". " + item + "<br>");
+		});
+
+		$.each({"name":"한사람","age":33},function(key,item){
+			document.write(key + " : " + item + "<br>");
+		});
+	});
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		// ID 선택자
+		$("#header1").css('color','red');
+		$("#header3").css('color','red');
+		$("#header5").css('color','red');
+		
+		// h1태그의 id가 header1인것만
+		$("h1#header1").css('backgroundColor','skyblue');
+	
+		
+		$(".item1").css('color','red');
+		$(".item2").css('color','green');
+		$("h4.item2").css('color','silver');
+		
+	});
+</script>
+</head>
+<body>
+
+	<!-- h3[class="item"]{나는 더작은 제목입니다.$$$}*5  -->
+	<h1 class="item1">나는 더작은 제목입니다.001</h1>
+	<h2 class="item2">나는 더작은 제목입니다.002</h2>
+	<h3 class="item3">나는 더작은 제목입니다.003</h3>
+	<h4 class="item4">나는 더작은 제목입니다.004</h4>
+	<h5 class="item5">나는 더작은 제목입니다.005</h5>
+	<h6 class="item6">나는 더작은 제목입니다.005</h6>
+
+	<!--  h2[id="header$"]{나는 작은 제목입니다.-$$$}*5 -->
+	<h2 id="header1">나는 작은 제목입니다.-001</h2>
+	<h2 id="header2">나는 작은 제목입니다.-002</h2>
+	<h2 id="header3">나는 작은 제목입니다.-003</h2>
+	<h2 id="header4">나는 작은 제목입니다.-004</h2>
+	<h2 id="header5">나는 작은 제목입니다.-005</h2>
+	<h1 id="header1">나는 작은 제목입니다.-005</h1>
+	<h1 id="header2">나는 작은 제목입니다.-005</h1>
+
+</body>
+</html>

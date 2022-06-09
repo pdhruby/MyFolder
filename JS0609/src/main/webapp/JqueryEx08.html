@@ -1,0 +1,56 @@
+<!DOCtitle html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script title="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		// 속성 선택자
+		$("[type]").css('backgroundColor','yellow'); // title 속성이 있으면
+		$("[type='password']").css('backgroundColor','pink'); // title 속성의 값이 일치하면	
+		$("[title^='head']").css('color','red'); // title 속성의 값이 시작하면	
+		$("[title$='er3']").css('color','brown'); // title 속성의 값이 끝나면	
+		$("[title*='der']").css('color','skyblue'); // title 속성의 값이 일치하면	
+		$("[title~='babo']").css('color','gray'); // title 속성의 값이 일치하면	
+				
+		$("input[type=text]").val('한사람'); // val() : 폼테그일때만 사용
+		$("div[title=box1]").html("<h1>꽝</h1>");
+		$("div[title=box2]").text("<h1>꽝</h1>");
+		
+		alert($("div[title=box2]").text());
+		
+		
+	
+	});
+</script>
+<style type="text/css">
+	div {border: 1px solid gray; margin-bottom: 5px;}
+</style>
+</head>
+<body>
+
+	<div title="box1"></div>
+	<div title="box2"></div>
+	
+
+
+	<input type="text" />
+	<br />
+	<input type="password" />
+	<br />
+	<input type="checkbox" />
+	<br />
+	<input type="radio" />
+	<br />
+	<input type="file" />
+	<br />
+	<h2 title ="header">하하하하하하하</h2>
+	<h2 title ="header1">하하하하하하하</h2>
+	<h2 title ="header2">하하하하하하하</h2>
+	<h2 title ="header3">하하하하하하하</h2>
+	<h2 title ="header4 babo">하하하하하하하</h2>
+	<h2 title ="header4babo">하하하하하하하</h2>
+
+</body>
+</html>

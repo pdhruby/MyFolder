@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	window.onload = function(){
+		alert('기존 자바스크립트!!! 1')
+	}
+	
+	window.onload = function(){
+		alert('기존 자바스크립트!!! 2')
+	}
+	
+	window.onload = function(){
+		alert('기존 자바스크립트!!! 3')
+	}
+	
+	$( document ).ready(function() {
+		alert( "Jquery 1" );
+	});
+
+	$(function(){
+		alert( "Jquery 2" );
+	});
+
+	$(function(){
+		alert( "Jquery 3" );
+	});
+	
+	$(function(){
+		alert( "Jquery 4" );
+	});
+
+</script>
+</head>
+<body>
+	<h1>Hello JQuery!!!!</h1>
+</body>
+</html>

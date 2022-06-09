@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		$("h1").each(function(i,element) {
+			$(this).html($(this).html() +" " + i + " " + element.innerHTML);
+			$(this).html($(this).html() +" " + i + " " + $(element).html());
+		});
+	
+		var color = ['red','green','blue','yellow','orange'];
+		
+		$("h2").each(function(i,element){
+			$(this).css('color',color[i]);
+		});
+	});
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<!--  (h1{큰제목}+h2{작은제목})*5 -->	
+	<h1>큰제목</h1>
+	<h2>작은제목</h2>
+	<h1>큰제목</h1>
+	<h2>작은제목</h2>
+	<h1>큰제목</h1>
+	<h2>작은제목</h2>
+	<h1>큰제목</h1>
+	<h2>작은제목</h2>
+	<h1>큰제목</h1>
+	<h2>작은제목</h2>
+</body>
+</html>

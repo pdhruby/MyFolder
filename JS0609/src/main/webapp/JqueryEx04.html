@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){ // window.onload와 같은 기능이다.
+		$("button").first().click(function(){
+			$("h1").eq(1).show();
+		});
+		$("button").last().click(function(){
+			$("h1").eq(1).hide();
+		});
+	});
+</script>
+</head>
+<body>
+	<button>보여줘</button>
+	<button>숨겨줘</button>
+	<hr />
+	<h1>내가 보일까?</h1>
+	<h1>내가 보일까? ******</h1>
+	<h1>내가 보일까?</h1>
+</body>
+</html>
