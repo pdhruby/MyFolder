@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<insert id="insert" parameterType="MemberVO">
+	INSERT INTO MEMBER VALUES 
+	(member_idx_seq.nextval,#{userid},#{password},#{name},#{birth},#{gender}
+	,#{email},#{phone},#{postCode},#{addr1},#{addr2}, 0, 0);
+	</insert>
+	
+	<update id="update" parameterType="MemberVO">
+		update member set
+			email = #{email},
+			postCode = #{postCode},
+			addr1 = #{addr1},
+			addr2 = #{addr2}
+		where
+			idx=#{idx}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from member where idx=#{idx}
+	</delete>
+	
+	<select id="selectByIdx" parameterType="int" resultType="MemberVO">
+		select * from member where idx=#{idx}
+	</select>
+
+	<select id="selectByUserid" parameterType="string" resultType="MemberVO">
+		select * from member where userid=#{userid}
+	</select>
+	
+	<select id="selectList" resultType="MemberVO">
+		select * from member order by idx desc
+	</select>
+	
+	<select id="selectUseridCount" parameterType="string" resultType="int">
+		select count(*) from member where userid=#{userid}
+	</select>
+	
+	
+	<select id="updateUse" parameterType="hashmap">
+		update member set use=#{use} where idx=#{idx}
+	</select>
+	
+	<select id="updateLevel" parameterType="hashmap">
+		update member set lev=#{lev} where idx=#{idx}
+	</select>
+	
+</mapper>
