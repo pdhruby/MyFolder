@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 필터</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 짝수로 먼저 걸르고 짝수들 중에서 홀수번쨰가 된다.
+		/*
+		$("h3")
+		.filter(":even").css({
+			"backgroundColor":"black",
+			"color":"white"
+		})
+		.filter(":odd").css({
+			"backgroundColor":"pink",
+			"color":"red"
+		});
+		*/
+		$("h3")
+		.filter(":even").css({
+			"backgroundColor":"black",
+			"color":"white"
+		})
+		.end() // 문서탐색 종료
+		.filter(":odd").css({
+			"backgroundColor":"pink",
+			"color":"red"
+		})
+		.end()
+		.eq(-2).css({ // 음수를 쓰면 뒤에서 부터이다.
+			"color":"blue"
+		})
+		.end()
+		.eq(-3).css({
+			"color":"gray"
+		});
+	});
+</script>
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+	<h3>하하하하하하 001</h3>
+	<h3>하하하하하하 002</h3>
+	<h3>하하하하하하 003</h3>
+	<h3>하하하하하하 004</h3>
+	<h3>하하하하하하 005</h3>
+	<h3>하하하하하하 006</h3>
+	<h3>하하하하하하 007</h3>
+	<h3>하하하하하하 008</h3>
+</body>
+</html>

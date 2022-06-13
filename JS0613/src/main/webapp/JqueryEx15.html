@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 이벤트 지정하기</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 이벤트 연결하기
+		$("h1")
+		.css('cursor','move')
+		.bind('click', function() {
+			$(this).html($(this).html()+ "+");
+		});
+		$("h1").bind({
+			mouseenter:function(){ // 마우스 포인터가 들어오면
+				$(this).addClass("reverse");
+			},
+			mouseleave:function(){// 마우스 포인터가 나가면
+				$(this).removeClass("reverse");
+			}
+		});
+	});
+</script>
+<style type="text/css">
+a:link {
+	color: black; text-decoration: none;
+}
+
+a:visited {
+	color: green; text-decoration: none;
+}
+
+a:hover {
+	color: blue; text-decoration: none;
+}
+
+a:active {
+	color: red; text-decoration: none;
+}
+.reverse{
+	background-color: gray;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<h1>눌러봐~~</h1>
+	<h1>눌러봐~~</h1>
+	<h1>눌러봐~~</h1>
+	<a href="#1">링크 1</a>
+	<a href="#2">링크 2</a>
+	<a href="#3">링크 3</a>
+	<a href="#4">링크 4</a>
+	<a href="#5">링크 5</a>
+</body>
+</html>

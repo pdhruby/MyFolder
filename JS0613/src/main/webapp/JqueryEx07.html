@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery find()</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	// XML형식의 문자열이다.
+	var xml='';
+	xml+='<friends>';
+	xml+=' <friend>';
+	xml+=' <name>연하진</name>';
+	xml+=' <language>Ruby</language>';
+	xml+=' </friend>';
+	xml+=' <friend>';
+	xml+=' <name>윤명월</name>';
+	xml+=' <language>Basic</language>';
+	xml+=' </friend>';
+	xml+=' <friend>';
+	xml+=' <name>윤하린</name>';
+	xml+=' <language>C#</language>';
+	xml+=' </friend>';
+	xml+='</friends>';
+	
+	$(function(){
+		var xmlDoc = $.parseXML(xml); // 문자열이 아닌 XML객체로 변경
+		var output="";
+		$(xmlDoc).find("friend").each(function(i, element) {
+			output += "<div><h1>" + $(this).find("name").text() + "</h1>";
+			output += $(this).find("language").text() + "</div>";
+		});
+		document.body.innerHTML += output;
+	});
+</script>
+<style type="text/css">
+	div { border: 1px solid gray; border-radius:30px;
+	width: 150px; height: 150px; text-align: center; float: left; margin: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>하하하하</h1>
+</body>
+</html>

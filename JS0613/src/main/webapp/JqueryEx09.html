@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 속성 추가</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("img").each(function(i) {
+			$(this).attr('src','images/' + (i+1) + '.png');
+		});
+		
+		$("button").each(function(i, element) {
+			$(this).click(function() {
+				if($(this).text().indexOf("숨기기")!=-1 ){
+					$(this).text($(this).text().substr(0,3) + "보이기");
+					// $("img").eq(i).css('display','none'); // 공간 자체가 사라진다.
+					$("img").eq(i).css('visibility','hidden'); // 공간 유지가 된다.
+				}else{
+					$(this).text($(this).text().substr(0,3) + "숨기기");
+					// $("img").eq(i).css('display','inline');
+					$("img").eq(i).css('visibility','visible'); // 공간 유지가 된다.
+				}
+			});
+		});
+	});
+</script>
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+	<button>1번 숨기기</button>
+	<button>2번 숨기기</button>
+	<button>3번 숨기기</button>
+	<hr />
+	<img src="" alt="" />
+	<img src="" alt="" />
+	<img src="" alt="" />
+	
+</body>
+</html>

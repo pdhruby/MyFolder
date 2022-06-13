@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 이벤트 지정하기</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("input").focus(function(){ // 포커스를 가질때
+			$(this).css('backgroundColor','yellow');
+		});
+		$("input").blur(function(){ // 포커스를 잃어 버릴때
+			$(this).css('backgroundColor','pink');
+		});
+		
+		// 첫번째 text박스에는 숫자 입력가능하게 하시오!!!!
+		$("input[type='text']").first().blur(function(){ // 포커스를 잃어 버릴때
+			if(isNaN($(this).val())){
+				alert('숫자만 입력 가능합니다.');
+				$(this).val("");
+				$(this).focus();
+			}
+		});
+		// 두번째 text박스에는 입력시 숫자만 입력가능하게 하시오!!!!
+		$("input[type='text']").eq(1).keyup(function(){ // 키가 눌렸다가 떨어질때
+			if(isNaN($(this).val())){
+				alert('숫자만 입력 가능합니다.');
+				var value= $(this).val();
+				$(this).val(value.substring(0, value.length-1));
+				$(this).focus();
+			}
+		});
+	});
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<input type="text" />
+	<input type="text" />
+	<input type="text" />
+</body>
+</html>
