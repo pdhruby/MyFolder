@@ -1,0 +1,90 @@
+spring.io 접속
+
+spring3.19.17 -> 4.19버전 다운로드(https://github.com/spring-projects/toolsuite-distribution/wiki/Spring-Tool-Suite-3)
+
+서버포트변경하는방법 
+src/main/resources -> application.properties 에서    server.port = 포트번호
+
+압축후 Spring폴더-> workspcae3 폴더 만들고 넣기
+
+help->install new software 들어가서
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+lombok 셋팅
+ - Name : lombok
+ - https://projectlombok.org/p2 
+
+만약 설치 실패하면 롬복 https://search.maven.org/ 들어가서 lombom 검색후  jar파일 다운로드
+파일다운로드후 알집으로 실행되면 해당 다운로드 폴더에서 cmd 쳐서 java -jar lombok-1.18.24.jar 실행
+스프링을 자동으로 못잡아주면  specify location클릭후 해당스프링 경로 잡아준다.
+
+properties editor 셋팅
+ - Name : properties editor
+ -Location : http://propedit.sourceforge.jp/eclipse/updates
+첫번째꺼 맨마지막꺼 선택후 에러나면 맨밑 체크버튼 해제하기
+
+tern 셋팅
+-Name : tern
+-Location:http://oss.opensagres.fr/tern.repository/1.2.0/
+
+emmet 셋팅
+ - Name : emmet
+ -Location :http://download.emmet.io/eclipse/updates/
+
+dbeaver 셋팅
+ - Name :dbeaver
+-Location :https://dbeaver.io/update/latest/
+
+※  dbeaver.io를 깔아야함.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+※※window ->preferences 들어가서!!!!
+
+General 셋팅
+general - workspace -> text file encoding 을 utf -8로변경
+          - appearance -> colors and fonts -> text font눌러서 글꼴 변경
+
+editor -> file associations 
+json 선택후 editor 를 default 선택
+properties선택후   default 선택
+xml선택후  spring config editor를 선택후 default 선택
+--------------------------------------------------------------------
+
+Emmet 셋팅
+
+,jsp 추가
+
+
+Variables 에 가서 
+	lang : ko
+	Locale : ko-KR          
+
+keys -> delete line 검색 자기가 편한거로 변경 
+
+--------------------------------------------------------------------
+
+Web 셋팅
+
+Tern->Development->Repository들어가서 : jquery , 부트스트랩 선택
+
+css html jsp -> UTF-8로 변경
+--------------------------------------------------------------------
+
+
+form.xml
+	<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>5.3.21</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+	</properties>
+
+
+버젼 5.3.21 로 변경
+
+
+
+--------------------------------------------------------------------
+
+-전자정보프레임워크 개발환경 확인하기
